@@ -16,7 +16,6 @@ public class BookController : ControllerBase
         _bookPaymentService = bookPaymentService;
     }
 
-
     public async Task<IActionResult> Book(BookRoomCommand command)
     {
         var usuario = await _bookRepository.ObterUsuario(command);
@@ -49,11 +48,9 @@ public class BookController : ControllerBase
 
     private bool PagamentoConcluido(PaymentResponse? response)
     {
-         // Se a requisição não pode ser completa
          if (response is null)
             return false;
 
-        // Se o status foi diferente de "pago"
         if (response?.Status != "paid") 
             return false;
 
